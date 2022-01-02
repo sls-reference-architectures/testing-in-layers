@@ -1,5 +1,5 @@
 # testing-in-layers
-A reference project to demonstrate testing at unit, int, and e2e layers
+A reference project to demonstrate testing at unit, int, and e2e layers (this has nothing to do with Lambda "layers")
 
 ## The Testing Honeycomb
 The "honeycomb" reference is to the inversion of the traditional "Testing Pyramid" into a shape that reflects the proportion of tests at each layer. Layer names are contentious; their definitions are less so. I will focus on the definitions and provide provisional names.
