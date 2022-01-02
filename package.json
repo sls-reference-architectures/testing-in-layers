@@ -1,0 +1,59 @@
+{
+  "name": "ra-testing-honeycomb",
+  "version": "1.0.0",
+  "description": "A reference project to demonstrate testing at unit, int, and e2e layers",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint . --ext .ts",
+    "test": "npm run lint && npx jest unit.test --collectCoverage --collectCoverageFrom=src/**/*.ts",
+    "deploy": "npx sls deploy -s dev",
+    "test:int": "npx jest int.test --config jest.config.e2e.js",
+    "test:e2e": "npx jest e2e.test --config jest.config.e2e.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SethO/ra-testing-honeycomb.git"
+  },
+  "author": "Seth Orell",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SethO/ra-testing-honeycomb/issues"
+  },
+  "homepage": "https://github.com/SethO/ra-testing-honeycomb#readme",
+  "devDependencies": {
+    "@aws-sdk/client-cloudformation": "^3.45.0",
+    "@tsconfig/node14": "^1.0.1",
+    "@types/faker": "^5.5.9",
+    "@types/jest": "^27.4.0",
+    "@typescript-eslint/eslint-plugin": "^5.8.1",
+    "@typescript-eslint/parser": "^5.8.1",
+    "aws-testing-library": "^1.1.2",
+    "axios": "^0.24.0",
+    "eslint": "^8.6.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-import-resolver-typescript": "^2.5.0",
+    "eslint-plugin-import": "^2.24.1",
+    "faker": "^5.5.3",
+    "husky": "^7.0.4",
+    "jest": "^27.4.0",
+    "serverless": "^2.70.0",
+    "serverless-deployment-bucket": "^1.5.1",
+    "serverless-iam-roles-per-function": "^3.2.0",
+    "serverless-layers": "^2.5.1",
+    "serverless-plugin-typescript": "^2.1.0",
+    "ts-jest": "^27.1.2",
+    "typescript": "^4.5.4"
+  },
+  "dependencies": {
+    "@dazn/lambda-powertools-logger": "^1.28.1",
+    "@middy/core": "^2.5.4",
+    "@middy/http-error-handler": "^2.5.4",
+    "@middy/http-json-body-parser": "^2.5.4",
+    "@types/aws-lambda": "^8.10.89",
+    "@types/http-errors": "^1.8.1",
+    "aws-sdk": "^2.1048.0",
+    "http-errors": "^2.0.0",
+    "joi": "^17.5.0",
+    "ulid": "^2.3.0"
+  }
+}

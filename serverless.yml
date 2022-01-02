@@ -1,0 +1,63 @@
+service: testing-in-layers
+
+custom:
+  stage: ${opt:stage, self:provider.stage}
+  tableName: ${self:service}-${self:custom.stage}
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  stage: dev
+  deploymentBucket:
+    name: com.sethorell.deploys
+    serverSideEncryption: AES256
+  tags:
+    lumigo:auto-trace: true
+  lambdaHashingVersion: '20201221'
+  environment:
+    TABLE_NAME: ${self:custom.tableName}
+    NODE_ENV: ${self:custom.stage}
+    TRACED: 'true'
+
+functions:
+  createProduct:
+    handler: src/createProductHandler.default
+    events:
+      - http: 
+          path: products
+          method: POST
+          cors: true
+    iamRoleStatements:
+      - Effect: Allow
+        Action: dynamodb:PutItem
+        Resource: arn:aws:dynamodb:us-east-1:833818295128:table/dev-honeycomb-demo
+
+resources:
+  Resources:
+    ProductsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:custom.tableName}
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+  
+  Outputs:
+    TableName:
+      Description: The name of the DDB table
+      Value: !Ref ProductsTable
+
+
+package:
+  patterns:
+    - config/**
+
+plugins:
+  - serverless-plugin-typescript
+  - serverless-iam-roles-per-function
+  - serverless-deployment-bucket
+  - serverless-layers
