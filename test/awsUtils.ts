@@ -1,8 +1,10 @@
 import Logger from '@dazn/lambda-powertools-logger';
-import { APIGatewayProxyEvent, Context } from 'aws-lambda';
+import { Context } from 'aws-lambda';
 import { DocumentClient } from 'aws-sdk/clients/dynamodb';
 import faker from 'faker';
 import { ulid } from 'ulid';
+import { Product } from '../src/models';
+import { APIGatewayProxyEventMiddyNormalized } from '../src/types';
 
 import { generateProduct } from './testModels';
 
@@ -24,10 +26,15 @@ const removeProductsFromDB = async (ids: string[]): Promise<void> => {
   await Promise.all(deletePromises);
 };
 
-const createApiGatewayEvent = (product = generateProduct()): APIGatewayProxyEvent => ({
-  body: JSON.stringify(product),
+const createApiGatewayEvent = (
+  product = generateProduct(),
+): APIGatewayProxyEventMiddyNormalized<Product> => ({
+  body: product,
   headers: {},
-} as APIGatewayProxyEvent);
+  queryStringParameters: {},
+  multiValueQueryStringParameters: {},
+  pathParameters: {},
+} as APIGatewayProxyEventMiddyNormalized<Product>);
 
 const createEmptyContext = (): Context => ({
   callbackWaitsForEmptyEventLoop: true,
