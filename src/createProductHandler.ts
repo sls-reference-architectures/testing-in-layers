@@ -1,16 +1,21 @@
-import { APIGatewayProxyResult, APIGatewayProxyEvent } from 'aws-lambda';
+import { APIGatewayProxyResult } from 'aws-lambda';
 import Logger from '@dazn/lambda-powertools-logger';
 import httpErrorHandler from '@middy/http-error-handler';
+import jsonBodyParser from '@middy/http-json-body-parser';
 import middy from '@middy/core';
 
 import ProductsRepository from './productsRepository';
 import validate from './productValidator';
+import { Product } from './models';
+import { APIGatewayProxyEventMiddyNormalized } from './types';
 
 const productsRepo = new ProductsRepository();
 
-const createProduct = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
+const createProduct = async (
+  event: APIGatewayProxyEventMiddyNormalized<Product>,
+): Promise<APIGatewayProxyResult> => {
   Logger.debug('In createProduct handler', { event });
-  const newProduct = JSON.parse(event.body || '{}');
+  const newProduct = event.body;
   const cleanProduct = validate(newProduct);
   const result = await productsRepo.save(cleanProduct);
 
@@ -21,6 +26,7 @@ const createProduct = async (event: APIGatewayProxyEvent): Promise<APIGatewayPro
 };
 
 const handler = middy(createProduct)
+  .use(jsonBodyParser())
   .use(httpErrorHandler());
 
 export default handler;
