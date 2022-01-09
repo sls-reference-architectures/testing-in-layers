@@ -2,18 +2,18 @@
 A reference project to demonstrate testing at unit, int, and e2e layers (this has nothing to do with Lambda "layers")
 
 ## The Layers
-One way to visualize the concept of testing "layers" is the traditional "Testing Pyramid" (or the more recent "Testing Honeycomb") with its horizontal bands representing a layer. In most models, they share some common, often-encountered layers: most typically the "Unit" layer and, just above it, the "Integration" layer. I am going to dig into this so-called integration layer to argue that we can make a meaningful litmus test for splitting them into their own layers.
+One way to visualize the concept of testing "layers" is the traditional "Testing Pyramid" (or the more recent "Testing Honeycomb") with its horizontal bands each representing a layer. In most models, they share some common, often-encountered layers: typically the "Unit" layer and, just above it, the "Integration" layer. I am going to dig into this so-called integration layer to argue that we can make a meaningful litmus test for splitting them into their own layers.
 
 Layer names are contentious; their definitions are less so. I will focus on the definitions and provide provisional names.
 
 ### Unit Tests
-What was once the dominant player in the pyramid now becomes a supporting role in the honeycomb. This class of tests is in-memory, fast, and require no deployment and no connectivity. Use this layer to test business logic in a module. The use of mocks/stubs is a code smell - avoid them<sup>[1](#foot01)</sup>.
+What was once the dominant player in the pyramid now becomes a supporting role in the test suite. This class of tests is in-memory, fast, and requires no deployment and no connectivity. Use this layer to test business logic in a module. The use of mocks/stubs is a code smell - avoid them<sup>[1](#foot01)</sup>.
 
 ### Integration Tests
 Here is where the bulk of our testing efforts should fall. Integration tests drive both your code and the stable<sup>[2](#foot02)</sup> services it uses. For example, an integration test for a repository module that uses DynamoDB would hit a real, live DynamoDB. An integration test for a Lambda that writes to S3 would invoke that handler directly and verify the written object in S3. This class of tests differs from Unit tests by allowing network connectivity and differs from E2E tests by *not requiring a deployment*<sup>[3](#foot03)</sup>. This no-deployment requirement significantly reduces the cost of the test and provides relatively fast feedback to the caller.
 
 ### End-to-End (E2E) Tests
-This set of tests drives the system more like a user would. These tests almost always require a deployment prior to execution and are therefore much more expensive to run and get feedback. For example, to test an API endpoint that creates a Product resource, we would issue an HTTP POST to the ApiGateway URL with a proper payload. To verify we could either check the database or, if you have a GET for the resource, we could issue an HTTP GET<sup>[4](#foot04)</sup>.
+This set of tests drives the system like a user would. These tests almost always require a deployment prior to execution and are therefore much more expensive to run and get feedback. For example, to test an API endpoint that creates a Product resource, we would issue an HTTP POST to the ApiGateway URL with a proper payload. To verify we could either check the database or, if you have a GET for the resource, we could issue an HTTP GET<sup>[4](#foot04)</sup>.
 
 ## Project Layout
 This project aims to provide appropriate working examples of each type of test layer. To do so, I'll set up a [Simple Web Service pattern](https://www.jeremydaly.com/serverless-microservice-patterns-for-aws/#simplewebservice) that will create a "Product". It will have some basic input validation, write the record to the database, and return the newly-created id to the caller.
