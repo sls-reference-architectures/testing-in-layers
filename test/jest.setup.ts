@@ -8,7 +8,7 @@ const region = process.env.AWS_REGION || 'us-east-1';
 const stage = process.env.NODE_ENV || 'dev';
 
 const setup = async (): Promise<void> => {
-  const stackName = `ra-test-honeycomb-${stage}`;
+  const stackName = `testing-in-layers-${stage}`;
   const stack = await getStack(stackName);
 
   process.env.API_URL = getApiUrl(stack);

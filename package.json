@@ -1,5 +1,5 @@
 {
-  "name": "ra-testing-honeycomb",
+  "name": "testing-in-layers",
   "version": "1.0.0",
   "description": "A reference project to demonstrate testing at unit, int, and e2e layers",
   "main": "index.js",
@@ -7,19 +7,19 @@
     "lint": "eslint . --ext .ts",
     "test": "npm run lint && npx jest unit.test --collectCoverage --collectCoverageFrom=src/**/*.ts",
     "deploy": "npx sls deploy -s dev",
-    "test:int": "npx jest int.test --config jest.config.e2e.js",
-    "test:e2e": "npx jest e2e.test --config jest.config.e2e.js"
+    "test:int": "NODE_ENV=dev npx jest int.test --config jest.config.e2e.js",
+    "test:e2e": "NODE_ENV=dev npx jest e2e.test --config jest.config.e2e.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SethO/ra-testing-honeycomb.git"
+    "url": "git+https://github.com/sls-reference-architectures/testing-in-layers.git"
   },
   "author": "Seth Orell",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/SethO/ra-testing-honeycomb/issues"
+    "url": "https://github.com/sls-reference-architectures/testing-in-layers/issues"
   },
-  "homepage": "https://github.com/SethO/ra-testing-honeycomb#readme",
+  "homepage": "https://github.com/sls-reference-architectures/testing-in-layers#readme",
   "devDependencies": {
     "@aws-sdk/client-cloudformation": "^3.45.0",
     "@tsconfig/node14": "^1.0.1",

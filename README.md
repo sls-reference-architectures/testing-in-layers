@@ -1,14 +1,16 @@
 # testing-in-layers
 A reference project to demonstrate testing at unit, int, and e2e layers (this has nothing to do with Lambda "layers")
 
-## The Testing Honeycomb
-The "honeycomb" reference is to the inversion of the traditional "Testing Pyramid" into a shape that reflects the proportion of tests at each layer. Layer names are contentious; their definitions are less so. I will focus on the definitions and provide provisional names.
+## The Layers
+One way to visualize the concept of testing "layers" is the traditional "Testing Pyramid" (or the more recent "Testing Honeycomb") with its horizontal bands representing a layer. In most models, they share some common, often-encountered layers: most typically the "Unit" layer and, just above it, the "Integration" layer. I am going to dig into this so-called integration layer to argue that we can make a meaningful litmus test for splitting them into their own layers.
+
+Layer names are contentious; their definitions are less so. I will focus on the definitions and provide provisional names.
 
 ### Unit Tests
 What was once the dominant player in the pyramid now becomes a supporting role in the honeycomb. This class of tests is in-memory, fast, and require no deployment and no connectivity. Use this layer to test business logic in a module. The use of mocks/stubs is a code smell - avoid them<sup>[1](#foot01)</sup>.
 
 ### Integration Tests
-Here is where the bulk of our testing efforts should fall. Integration tests drive both your code and the stable<sup>[2](#foot02)</sup> services it uses. For example, an integration test for a repository module that uses DynamoDB would hit a real, live DynamoDB. An integration test for a Lambda that writes to S3 would invoke that handler directly and verify the written object in S3. This class of tests differs from Unit tests by allowing network connectivity and differs from E2E tests by not requiring a deployment<sup>[3](#foot03)</sup>. This no-deployment requirement significantly reduces the cost of the test and provides relatively fast feedback to the caller.
+Here is where the bulk of our testing efforts should fall. Integration tests drive both your code and the stable<sup>[2](#foot02)</sup> services it uses. For example, an integration test for a repository module that uses DynamoDB would hit a real, live DynamoDB. An integration test for a Lambda that writes to S3 would invoke that handler directly and verify the written object in S3. This class of tests differs from Unit tests by allowing network connectivity and differs from E2E tests by *not requiring a deployment*<sup>[3](#foot03)</sup>. This no-deployment requirement significantly reduces the cost of the test and provides relatively fast feedback to the caller.
 
 ### End-to-End (E2E) Tests
 This set of tests drives the system more like a user would. These tests almost always require a deployment prior to execution and are therefore much more expensive to run and get feedback. For example, to test an API endpoint that creates a Product resource, we would issue an HTTP POST to the ApiGateway URL with a proper payload. To verify we could either check the database or, if you have a GET for the resource, we could issue an HTTP GET<sup>[4](#foot04)</sup>.
@@ -20,21 +22,32 @@ The tests all reside in the `/test` directory and differ from one another by fil
 
 Note that some overlap is both expected and intended. E.g., a 400 at the integration level is almost identical to one from the unit test level (except we should see the error turn into a response code). Both tests are relatively cheap, so the overlap is fine. However, I would not re-run this test at the e2e level as it provides nothing new. By testing ApiGateway with one, happy-path e2e test we know that we are forming our responses correctly and it will map the right status code.
 
-## Running the Project
-Take a look at the steps and variables used in the `.github/workflows/ci.yml` file. That will give you an overview of all that is necessary to run/deploy any part of the project.
+## To Deploy and Run
+First, do whatever is necessary to have CLI access to your AWS account (you can quickly verify this with `aws s3 ls` or similar). Then you will want to deploy the project. See section below for further discussion of pre-deployment vs. post-deployment testing how you arrive at that situation.
 
-In a nutshell,
+To deploy,
 - `$ npm ci`
-- To run unit tests just `$ npm t`
-- To run integration tests:
+- `$ npx sls deploy`
+
+To run unit tests:
+  - `$ npm t`
+
+To run integration tests:
   - `$ export NODE_ENV=dev`
-  - `$ export AWS_PROFILE=<your_profile>`
   - `$ npm run test:int`
-- To run end-to-end tests:
+
+To run end-to-end tests:
   - `$ export NODE_ENV=dev`
-  - `$ export AWS_PROFILE=<your_profile>`
-  - `$ npm run deploy`
   - `$ npm run test:e2e`
+
+## Initial Deployment and Spiral Approach to Building
+I am including this section because I have received questions about initial deployment. Most of them are similar to "How can I write a test against a DynamoDB when I haven't yet configured it?" and it's a fair question.
+
+When I build a project, I do so in a circular fashion. I start with a small thing, maybe a `hello-world` Lambda, and then I deploy it. Once I have an idea about my data storage needs, I'd likely go back and add a simple DynamoDB definition *and then deploy it*. I'm constantly making incremental progress while integrating and deploying frequently. I visualize this not quite as a circle, but a circle moving forward - a spiral.
+
+This code-base is a snapshot of an imaginary project which has already gone through a few cycles since its inception. When I say "write an integration test that hits DynamoDB and you don't have to deploy first" I am talking about this point on the project's spiral and all future points. 
+
+All that is to re-iterate - when you first clone this project, you will have to deploy it first before you run the `int` tests.
 
 ## References
  - [Yan Cui: Yubl's Serverless Testing](https://medium.com/hackernoon/yubls-road-to-serverless-part-2-testing-and-ci-cd-72b2e583fe64)

@@ -9,7 +9,7 @@ provider:
   runtime: nodejs14.x
   stage: dev
   deploymentBucket:
-    name: com.sethorell.deploys
+    name: com.reference-architecture.deploys
     serverSideEncryption: AES256
   tags:
     lumigo:auto-trace: true
@@ -30,7 +30,7 @@ functions:
     iamRoleStatements:
       - Effect: Allow
         Action: dynamodb:PutItem
-        Resource: arn:aws:dynamodb:us-east-1:833818295128:table/dev-honeycomb-demo
+        Resource: !GetAtt ProductsTable.Arn
 
 resources:
   Resources:
