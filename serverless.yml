@@ -18,7 +18,7 @@ provider:
     TABLE_NAME: ${self:custom.tableName}
     NODE_ENV: ${self:custom.stage}
     FOO: 'foo'
-    # BAR: 'bar'
+    BAR: 'bar'
 
 functions:
   createProduct:
