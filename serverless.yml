@@ -17,7 +17,7 @@ provider:
   environment:
     TABLE_NAME: ${self:custom.tableName}
     NODE_ENV: ${self:custom.stage}
-    TRACED: 'true'
+    FOO: 'foo'
 
 functions:
   createProduct:

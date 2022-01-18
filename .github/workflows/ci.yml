@@ -18,6 +18,7 @@
     jobs:
       build-deploy-test:
         runs-on: ubuntu-latest
+      concurrency: xyz
 
         steps:
           - uses: actions/checkout@v2
