@@ -17,7 +17,7 @@ provider:
   environment:
     TABLE_NAME: ${self:custom.tableName}
     NODE_ENV: ${self:custom.stage}
-    # FOO: 'foo'
+    FOO: 'foo'
     # BAR: 'bar'
 
 functions:
