@@ -2,7 +2,7 @@
 A reference project to demonstrate testing at unit, int, and e2e layers (this has nothing to do with Lambda "layers")
 
 ## The Layers
-One way to visualize the concept of testing "layers" is the traditional "Testing Pyramid" (or the more recent "Testing Honeycomb") with its horizontal bands each representing a layer. In most models, they share some common, often-encountered layers: typically the "Unit" layer and, just above it, the "Integration" layer. I am going to dig into this so-called integration layer to argue that we can make a meaningful litmus test for splitting them into their own layers.
+One way to visualize the concept of testing "layers" is the traditional "Testing Pyramid" (or the more recent "Testing Honeycomb") with its horizontal bands each representing a layer. In most models, they share some common, often-encountered layers: typically the "Unit" layer and, just above it, the "Integration" layer. I am going to dig into this so-called integration layer to argue that we can devise a meaningful litmus test for splitting it into dedicated layers.
 
 Layer names are contentious; their definitions are less so. I will focus on the definitions and provide provisional names.
 
