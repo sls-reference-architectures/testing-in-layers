@@ -14,30 +14,58 @@ describe('When invoking the createProduct handler', () => {
   });
 
   describe('with a valid product', () => {
-    const product = generateProduct();
-    let createProductResult: APIGatewayProxyResult;
-
-    beforeAll(async () => {
+    it('should return a 201 status code', async () => {
+      // ARRANGE
+      const product = generateProduct();
       const event = createApiGatewayEvent(product);
-      createProductResult = await handler(
+
+      // ACT
+      const createProductResult = await handler(
         event,
         emptyContext,
         emptyCallback,
       ) as APIGatewayProxyResult;
       const { id } = JSON.parse(createProductResult.body);
       testProductIds.push(id);
-    });
 
-    it('should return a 201 status code', () => {
+      // ASSERT
       expect(createProductResult.statusCode).toEqual(201);
     });
 
-    it('should return the id of the saved product', () => {
+    it('should return the id of the saved product', async () => {
+      // ARRANGE
+      const product = generateProduct();
+      const event = createApiGatewayEvent(product);
+
+      // ACT
+      const createProductResult = await handler(
+        event,
+        emptyContext,
+        emptyCallback,
+      ) as APIGatewayProxyResult;
+      const { id } = JSON.parse(createProductResult.body);
+      testProductIds.push(id);
+
+      // ASSERT
       const parsedResult = JSON.parse(createProductResult.body);
       expect(parsedResult).toHaveProperty('id');
     });
 
     it('should save the product to the DB', async () => {
+      // ARRANGE
+      const product = generateProduct();
+      const event = createApiGatewayEvent(product);
+
+      // ACT
+      const createProductResult = await handler(
+        event,
+        emptyContext,
+        emptyCallback,
+      ) as APIGatewayProxyResult;
+      const { id } = JSON.parse(createProductResult.body);
+      testProductIds.push(id);
+
+      // ASSERT
       const parsedResult = JSON.parse(createProductResult.body);
       await expect({
         region: 'us-east-1',

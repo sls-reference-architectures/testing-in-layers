@@ -1,6 +1,6 @@
-import { APIGatewayProxyResult } from 'aws-lambda';
+import { APIGatewayProxyResult, Context } from 'aws-lambda';
 import Logger from '@dazn/lambda-powertools-logger';
-import httpErrorHandler from '@middy/http-error-handler';
+import errorHandler from '@middy/http-error-handler';
 import jsonBodyParser from '@middy/http-json-body-parser';
 import middy from '@middy/core';
 
@@ -27,6 +27,6 @@ const createProduct = async (
 
 const handler = middy(createProduct)
   .use(jsonBodyParser())
-  .use(httpErrorHandler());
+  .use(errorHandler());
 
 export default handler;

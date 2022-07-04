@@ -6,7 +6,7 @@ export default class ProductsRepository {
   private docClient: DocumentClient;
 
   constructor() {
-    this.docClient = new DocumentClient();
+    this.docClient = new DocumentClient({ region: process.env.AWS_REGION });
   }
 
   async save(product: Product): Promise<Created> {
@@ -16,7 +16,6 @@ export default class ProductsRepository {
       TableName: process.env.TABLE_NAME ?? '',
     };
     await this.docClient.put(putParams).promise();
-
     return { id: productToSave.id as string };
   }
 }
