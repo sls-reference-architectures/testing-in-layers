@@ -6,7 +6,7 @@ custom:
 
 provider:
   name: aws
-  runtime: nodejs14.x
+  runtime: nodejs16.x
   stage: dev
   deploymentBucket:
     name: com.reference-architecture.deploys
@@ -61,4 +61,3 @@ plugins:
   - serverless-plugin-typescript
   - serverless-iam-roles-per-function
   - serverless-deployment-bucket
-  - serverless-layers
