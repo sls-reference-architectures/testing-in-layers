@@ -1,4 +1,4 @@
-import { APIGatewayProxyResult, Context } from 'aws-lambda';
+import { APIGatewayProxyResult } from 'aws-lambda';
 import Logger from '@dazn/lambda-powertools-logger';
 import errorHandler from '@middy/http-error-handler';
 import jsonBodyParser from '@middy/http-json-body-parser';
