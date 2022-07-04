@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint . --ext .ts",
-    "test": "npm run lint && npx jest unit.test --collectCoverage --collectCoverageFrom=src/**/*.ts",
+    "test": "npm run lint && npx jest unit.test --collectCoverage --collectCoverageFrom=src/**/*.ts --silent",
     "deploy": "npx sls deploy -s dev",
-    "test:int": "NODE_ENV=dev npx jest int.test --config jest.config.e2e.js",
-    "test:e2e": "NODE_ENV=dev npx jest e2e.test --config jest.config.e2e.js"
+    "test:int": "NODE_ENV=dev npx jest int.test --config jest.config.e2e.js --silent",
+    "test:e2e": "NODE_ENV=dev npx jest e2e.test --config jest.config.e2e.js --silent"
   },
   "repository": {
     "type": "git",
