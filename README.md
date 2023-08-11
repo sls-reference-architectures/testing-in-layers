@@ -63,4 +63,4 @@ All that is to re-iterate - when you first clone this project, you will have to 
 
 <a name="foot03">3</a>: Many of these integration tests require infrastructure that does require an initial "deployment" but can be tested in a later pass. E.g., I may provision a DDB table up front, deploy it, and then write my repository module with all its integration tests that use the DB.
 
-<a name="foot04">4</a>: Tests that use existing endpoints to verify (and sometimes to clean up) can often be run in higher environments - even in Production. I have sometimes categorized these as "smoke" tests. These smoke tests could potentially run on a timer - every N minutes - and raise alerts to the team if they ever fail.
+<a name="foot04">4</a>: Tests that use existing endpoints to verify (and sometimes to clean up) can often be run in higher environments - even in Production. I have sometimes categorized these as "smoke" tests. These smoke tests could potentially run on a chron - every N minutes - and raise alerts to the team if they ever fail.
