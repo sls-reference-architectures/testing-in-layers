@@ -1,24 +1,27 @@
 service: testing-in-layers
 
+frameworkVersion: '3'
+
 custom:
   stage: ${opt:stage, self:provider.stage}
   tableName: ${self:service}-${self:custom.stage}
 
 provider:
-  name: aws
-  runtime: nodejs16.x
-  stage: dev
+  architecture: arm64
   deploymentBucket:
     name: com.reference-architecture.deploys
     serverSideEncryption: AES256
-  tags:
-    lumigo:auto-trace: true
-  lambdaHashingVersion: '20201221'
   environment:
     TABLE_NAME: ${self:custom.tableName}
     NODE_ENV: ${self:custom.stage}
     FOO: 'foo'
     BAR: 'bar'
+  logRetentionInDays: 7
+  name: aws
+  runtime: nodejs18.x
+  stage: dev
+  tags:
+    lumigo:auto-trace: 'true'
 
 functions:
   createProduct:
