@@ -1,7 +1,7 @@
 import Logger from '@dazn/lambda-powertools-logger';
 import { Context } from 'aws-lambda';
 import { DocumentClient } from 'aws-sdk/clients/dynamodb';
-import faker from 'faker';
+import { faker } from '@faker-js/faker';
 import { ulid } from 'ulid';
 import { Product } from '../src/models';
 import { APIGatewayProxyEventMiddyNormalized } from '../src/types';
