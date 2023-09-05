@@ -4,20 +4,16 @@ import errorHandler from '@middy/http-error-handler';
 import jsonBodyParser from '@middy/http-json-body-parser';
 import middy from '@middy/core';
 
-import ProductsRepository from './productsRepository';
-import validate from './productValidator';
 import { Product } from './models';
 import { APIGatewayProxyEventMiddyNormalized } from './types';
-
-const productsRepo = new ProductsRepository();
+import * as service from './productsService';
 
 const createProduct = async (
   event: APIGatewayProxyEventMiddyNormalized<Product>,
 ): Promise<APIGatewayProxyResult> => {
   Logger.debug('In createProduct handler', { event });
   const newProduct = event.body;
-  const cleanProduct = validate(newProduct);
-  const result = await productsRepo.save(cleanProduct);
+  const result = await service.createProduct(newProduct);
 
   return {
     statusCode: 201,
