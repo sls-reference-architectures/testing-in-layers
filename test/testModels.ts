@@ -1,4 +1,4 @@
-import faker from 'faker';
+import { faker } from '@faker-js/faker';
 import { ulid } from 'ulid';
 import { Created, Product } from '../src/models';
 

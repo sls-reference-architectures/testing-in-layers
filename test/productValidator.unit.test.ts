@@ -1,4 +1,4 @@
-import faker from 'faker';
+import { faker } from '@faker-js/faker';
 import { Product } from '../src/models';
 
 import validate from '../src/productValidator';
@@ -67,7 +67,7 @@ describe('When using the Product validator', () => {
     it('should throw 400', () => {
       // ARRANGE
       const product = generateProduct();
-      product.price = faker.datatype.number({ max: -1 });
+      product.price = faker.number.int({ min: -10, max: -1 });
 
       // ACT
       const validateAction = () => validate(product);
