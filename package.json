@@ -33,7 +33,7 @@
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-import-resolver-typescript": "^2.5.0",
     "eslint-plugin-import": "^2.24.1",
-    "husky": "^7.0.4",
+    "husky": "^8.0.3",
     "jest": "^27.4.0",
     "serverless": "^3.26.0",
     "serverless-deployment-bucket": "^1.5.1",
