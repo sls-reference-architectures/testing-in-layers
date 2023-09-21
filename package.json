@@ -26,7 +26,7 @@
     "@tsconfig/node16": "^1.0.3",
     "@types/jest": "^27.4.0",
     "@typescript-eslint/eslint-plugin": "^5.8.1",
-    "@typescript-eslint/parser": "^5.8.1",
+    "@typescript-eslint/parser": "^5.62.0",
     "aws-testing-library": "^1.1.2",
     "axios": "^0.24.0",
     "eslint": "^8.48.0",
