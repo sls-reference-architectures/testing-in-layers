@@ -44,7 +44,7 @@
   },
   "dependencies": {
     "@dazn/lambda-powertools-logger": "^1.28.1",
-    "@middy/core": "^2.5.4",
+    "@middy/core": "^4.6.4",
     "@middy/http-error-handler": "^2.5.4",
     "@middy/http-json-body-parser": "^2.5.4",
     "@types/aws-lambda": "^8.10.119",
