@@ -1,4 +1,7 @@
 module.exports = {
-  preset: 'ts-jest',
-  setupFilesAfterEnv: ['./test/setupFrameworks.ts']
+  testEnvironment: 'node',
+  transform: {
+    '^.+\\.(t|j)sx?$': '@swc/jest',
+  },
+  setupFilesAfterEnv: ['./test/setupFrameworks.ts'],
 };
