@@ -23,7 +23,7 @@ describe('When invoking the createProduct handler', () => {
       const createProductResult = await handler(
         event,
         emptyContext,
-        emptyCallback,
+        // emptyCallback,
       ) as APIGatewayProxyResult;
       const { id } = JSON.parse(createProductResult.body);
       testProductIds.push(id);

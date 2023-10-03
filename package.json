@@ -44,12 +44,12 @@
   },
   "dependencies": {
     "@dazn/lambda-powertools-logger": "^1.28.1",
-    "@middy/core": "^2.5.4",
-    "@middy/http-error-handler": "^2.5.4",
-    "@middy/http-json-body-parser": "^2.5.4",
-    "@types/aws-lambda": "^8.10.119",
+    "@middy/core": "^4.6.4",
+    "@middy/http-error-handler": "^4.6.4",
+    "@middy/http-json-body-parser": "^4.6.4",
+    "@types/aws-lambda": "^8.10.122",
     "@types/http-errors": "^2.0.2",
-    "aws-sdk": "^2.1450.0",
+    "aws-sdk": "^2.1468.0",
     "http-errors": "^2.0.0",
     "joi": "^17.10.1",
     "ulid": "^2.3.0"
