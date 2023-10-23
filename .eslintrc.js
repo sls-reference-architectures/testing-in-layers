@@ -1,9 +1,4 @@
 module.exports = {
-  root: true,
-  parser: '@typescript-eslint/parser',
-  plugins: [
-    '@typescript-eslint',
-  ],
   env: {
     jest: true,
   },
@@ -13,6 +8,11 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'airbnb-base',
   ],
+  parser: '@typescript-eslint/parser',
+  plugins: [
+    '@typescript-eslint',
+  ],
+  root: true,
   rules: {
     'no-use-before-define': 0,
     'import/extensions': [
