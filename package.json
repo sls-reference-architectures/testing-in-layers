@@ -50,7 +50,7 @@
     "@middy/http-json-body-parser": "^4.6.4",
     "@types/aws-lambda": "^8.10.122",
     "@types/http-errors": "^2.0.2",
-    "aws-sdk": "^2.1468.0",
+    "aws-sdk": "^2.1478.0",
     "http-errors": "^2.0.0",
     "joi": "^17.11.0",
     "ulid": "^2.3.0"
