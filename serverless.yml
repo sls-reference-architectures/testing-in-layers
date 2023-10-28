@@ -20,7 +20,7 @@ provider:
     NODE_ENV: ${self:custom.stage}
   logRetentionInDays: 7
   name: aws
-  runtime: nodejs16.x
+  runtime: nodejs18.x
   stage: dev
   tags:
     lumigo:auto-trace: 'true'
