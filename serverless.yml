@@ -5,8 +5,8 @@ frameworkVersion: '3'
 custom:
   esbuild:
     minify: true
-    exclude: 
-    - '@aws-sdk/*'
+    # exclude: 
+    # - '@aws-sdk/*'
   stage: ${opt:stage, self:provider.stage}
   tableName: ${self:service}-${self:custom.stage}
 
