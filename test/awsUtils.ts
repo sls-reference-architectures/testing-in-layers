@@ -1,21 +1,22 @@
+import { DeleteCommand, DeleteCommandInput } from '@aws-sdk/lib-dynamodb';
 import Logger from '@dazn/lambda-powertools-logger';
 import { Context } from 'aws-lambda';
-import { DocumentClient } from 'aws-sdk/clients/dynamodb';
 import { faker } from '@faker-js/faker';
 import { ulid } from 'ulid';
 import { Product } from '../src/models';
 import { APIGatewayProxyEventMiddyNormalized } from '../src/types';
 
 import { generateProduct } from './testModels';
+import getDocumentClient from '../src/documentClient';
 
 const removeProductFromDB = async (id: string): Promise<void> => {
   try {
-    const deleteParams: DocumentClient.DeleteItemInput = {
+    const deleteParams: DeleteCommandInput = {
       Key: { id },
       TableName: process.env.TABLE_NAME ?? '',
     };
-    const docClient = new DocumentClient();
-    await docClient.delete(deleteParams).promise();
+    const docClient = getDocumentClient();
+    await docClient.send(new DeleteCommand(deleteParams));
   } catch (err) {
     Logger.error('Failed to remove item from DB', err as Error);
   }

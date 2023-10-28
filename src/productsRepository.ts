@@ -1,21 +1,22 @@
-import { DocumentClient } from 'aws-sdk/clients/dynamodb';
+import { DynamoDBDocumentClient, PutCommandInput, PutCommand } from '@aws-sdk/lib-dynamodb';
 import { ulid } from 'ulid';
 import { Created, Product } from './models';
+import getDocumentClient from './documentClient';
 
 export default class ProductsRepository {
-  private docClient: DocumentClient;
+  private docClient: DynamoDBDocumentClient;
 
   constructor() {
-    this.docClient = new DocumentClient({ region: process.env.AWS_REGION });
+    this.docClient = getDocumentClient();
   }
 
   async save(product: Product): Promise<Created> {
     const productToSave: Product = { ...product, id: ulid() };
-    const putParams: DocumentClient.PutItemInput = {
+    const putParams: PutCommandInput = {
       Item: productToSave,
       TableName: process.env.TABLE_NAME ?? '',
     };
-    await this.docClient.put(putParams).promise();
+    await this.docClient.send(new PutCommand(putParams));
     return { id: productToSave.id as string };
   }
 }
