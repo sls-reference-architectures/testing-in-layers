@@ -3,6 +3,8 @@ service: testing-in-layers
 frameworkVersion: '3'
 
 custom:
+  esbuild:
+    minify: true
   stage: ${opt:stage, self:provider.stage}
   tableName: ${self:service}-${self:custom.stage}
 
