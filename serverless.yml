@@ -61,6 +61,6 @@ package:
     - config/**
 
 plugins:
-  - serverless-plugin-typescript
+  - serverless-esbuild
   - serverless-iam-roles-per-function
   - serverless-deployment-bucket
