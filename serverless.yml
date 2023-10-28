@@ -5,6 +5,8 @@ frameworkVersion: '3'
 custom:
   esbuild:
     minify: true
+    exclude: 
+    - '@aws-sdk/*'
   stage: ${opt:stage, self:provider.stage}
   tableName: ${self:service}-${self:custom.stage}
 
@@ -16,11 +18,9 @@ provider:
   environment:
     TABLE_NAME: ${self:custom.tableName}
     NODE_ENV: ${self:custom.stage}
-    FOO: 'foo'
-    BAR: 'bar'
   logRetentionInDays: 7
   name: aws
-  runtime: nodejs18.x
+  runtime: nodejs16.x
   stage: dev
   tags:
     lumigo:auto-trace: 'true'
