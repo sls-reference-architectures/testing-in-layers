@@ -52,7 +52,7 @@
     "@middy/http-error-handler": "^4.6.5",
     "@middy/http-json-body-parser": "^4.7.0",
     "@types/aws-lambda": "^8.10.125",
-    "@types/http-errors": "^2.0.3",
+    "@types/http-errors": "^2.0.4",
     "http-errors": "^2.0.0",
     "joi": "^17.11.0",
     "ulid": "^2.3.0"
