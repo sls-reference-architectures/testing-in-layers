@@ -38,7 +38,7 @@
     "eslint-plugin-import": "^2.29.0",
     "husky": "^8.0.3",
     "jest": "^29.7.0",
-    "serverless": "^3.36.0",
+    "serverless": "^3.37.0",
     "serverless-deployment-bucket": "^1.5.1",
     "serverless-esbuild": "^1.48.5",
     "serverless-iam-roles-per-function": "^3.2.0",
