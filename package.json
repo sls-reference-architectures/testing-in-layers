@@ -48,7 +48,7 @@
     "@aws-sdk/client-dynamodb": "^3.449.0",
     "@aws-sdk/lib-dynamodb": "^3.449.0",
     "@dazn/lambda-powertools-logger": "^1.28.1",
-    "@middy/core": "^4.6.5",
+    "@middy/core": "^5.0.3",
     "@middy/http-error-handler": "^4.6.5",
     "@middy/http-json-body-parser": "^4.7.0",
     "@types/aws-lambda": "^8.10.125",
