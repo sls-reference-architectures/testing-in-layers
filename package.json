@@ -54,7 +54,7 @@
     "@types/aws-lambda": "^8.10.136",
     "@types/http-errors": "^2.0.4",
     "http-errors": "^2.0.0",
-    "joi": "^17.12.2",
+    "joi": "^17.12.3",
     "ulid": "^2.3.0"
   }
 }
