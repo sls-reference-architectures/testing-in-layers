@@ -83,20 +83,20 @@ describe('When invoking the createProduct handler', () => {
   });
 
   describe('with an invalid product', () => {
-    let createProductResult: APIGatewayProxyResult;
-
-    beforeAll(async () => {
+    it('should return a 400 status code', async () => {
+      // ARRANGE
       const invalidProduct = generateProduct();
       invalidProduct.name = '';
       const event = createApiGatewayEvent(invalidProduct);
-      createProductResult = await handler(
+
+      // ACT
+      const createProductResult = await handler(
         event,
         emptyContext,
         emptyCallback,
       ) as APIGatewayProxyResult;
-    });
 
-    it('should return a 400 status code', () => {
+      // ASSERT
       expect(createProductResult.statusCode).toEqual(400);
     });
   });

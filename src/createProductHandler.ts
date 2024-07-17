@@ -12,7 +12,7 @@ const createProduct = async (
   event: APIGatewayProxyEventMiddyNormalized<Product>,
 ): Promise<APIGatewayProxyResult> => {
   Logger.debug('In createProduct handler', { event });
-  const newProduct = event.body;
+  const { body: newProduct } = event;
   const result = await service.createProduct(newProduct);
 
   return {

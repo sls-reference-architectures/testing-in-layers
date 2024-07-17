@@ -3,10 +3,11 @@ import { Created, Product } from './models';
 import validate from './productValidator';
 import ProductsRepository from './productsRepository';
 
+const productsRepo = new ProductsRepository();
+
 export const createProduct = async (product: Product): Promise<Created> => {
   Logger.debug('In service.createProduct', { product });
   const cleanProduct = validate(product);
-  const productsRepo = new ProductsRepository();
   const productToReturn = await productsRepo.save(cleanProduct);
 
   return productToReturn;
