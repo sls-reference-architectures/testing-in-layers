@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/sls-reference-architectures/testing-in-layers#readme",
   "devDependencies": {
-    "@aws-sdk/client-cloudformation": "^3.687.0",
+    "@aws-sdk/client-cloudformation": "^3.721.0",
     "@faker-js/faker": "^8.4.1",
     "@swc/core": "^1.7.36",
     "@swc/jest": "^0.2.36",
