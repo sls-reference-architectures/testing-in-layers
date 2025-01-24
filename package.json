@@ -22,7 +22,7 @@
   "homepage": "https://github.com/sls-reference-architectures/testing-in-layers#readme",
   "devDependencies": {
     "@aws-sdk/client-cloudformation": "^3.734.0",
-    "@faker-js/faker": "^8.4.1",
+    "@faker-js/faker": "^9.4.0",
     "@swc/core": "^1.7.36",
     "@swc/jest": "^0.2.37",
     "@tsconfig/node18": "^18.2.4",
