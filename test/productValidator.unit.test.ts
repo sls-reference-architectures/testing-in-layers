@@ -113,7 +113,7 @@ describe('When using the Product validator', () => {
     it('should throw 400', () => {
       // ARRANGE
       const product = generateProduct();
-      product.description = faker.random.alpha({ count: 501 });
+      product.description = faker.string.alpha({ length: 501 });
 
       // ACT
       const validateAction = () => validate(product);
