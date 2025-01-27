@@ -50,7 +50,7 @@
     "@dazn/lambda-powertools-logger": "^1.28.1",
     "@middy/core": "4.7.0",
     "@middy/http-error-handler": "4.6.5",
-    "@middy/http-json-body-parser": "4.7.0",
+    "@middy/http-json-body-parser": "6.0.0",
     "@types/aws-lambda": "^8.10.145",
     "@types/http-errors": "^2.0.4",
     "http-errors": "^2.0.0",
