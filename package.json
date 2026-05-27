@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/sls-reference-architectures/testing-in-layers#readme",
   "devDependencies": {
-    "@aws-sdk/client-cloudformation": "^3.734.0",
+    "@aws-sdk/client-cloudformation": "^3.1054.0",
     "@faker-js/faker": "^9.4.0",
     "@swc/core": "^1.11.21",
     "@swc/jest": "^0.2.37",
@@ -46,8 +46,8 @@
     "typescript": "^5.7.3"
   },
   "dependencies": {
-    "@aws-sdk/client-dynamodb": "^3.734.0",
-    "@aws-sdk/lib-dynamodb": "^3.734.0",
+    "@aws-sdk/client-dynamodb": "^3.1054.0",
+    "@aws-sdk/lib-dynamodb": "^3.1054.0",
     "@dazn/lambda-powertools-logger": "^1.28.1",
     "@middy/core": "^7.5.0",
     "@middy/http-error-handler": "^7.5.0",
