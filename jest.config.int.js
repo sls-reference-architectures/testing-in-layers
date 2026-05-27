@@ -1,14 +1,18 @@
 const baseConfig = require('./jest.config.js');
 
-const esModules = ['aws-testing-library', 'filter-obj'];
+const esModules = [
+  'aws-testing-library',
+  'filter-obj',
+  '@middy/core',
+  '@middy/http-error-handler',
+  '@middy/util',
+  '@middy/input-output-logger',
+];
 
 const config = {
   ...baseConfig,
   testMatch: ['**/?(*.)+(int.test).[jt]s?(x)'],
-  transformIgnorePatterns: [
-    '/node_modules/(?!(@middy/core|@middy/http-error-handler|@middy/util|@middy/input-output-logger)/)',
-    `node_modules/(?!${esModules.join('|')})`,
-  ],
+  transformIgnorePatterns: [`node_modules/(?!(${esModules.join('|')}))`],
   moduleNameMapper: {
     '^@middy/core$': '<rootDir>/node_modules/@middy/core',
     '^@middy/util$': '<rootDir>/node_modules/@middy/util',
