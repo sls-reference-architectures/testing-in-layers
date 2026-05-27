@@ -30,12 +30,12 @@ const removeProductsFromDB = async (ids: string[]): Promise<void> => {
 const createApiGatewayEvent = (
   product = generateProduct(),
 ): APIGatewayProxyEventMiddyNormalized<Product> => ({
-  body: product,
-  headers: {},
+  body: JSON.stringify(product),
+  headers: { 'Content-Type': 'application/json' },
   queryStringParameters: {},
   multiValueQueryStringParameters: {},
   pathParameters: {},
-} as APIGatewayProxyEventMiddyNormalized<Product>);
+} as unknown as APIGatewayProxyEventMiddyNormalized<Product>);
 
 const createEmptyContext = (): Context => ({
   callbackWaitsForEmptyEventLoop: true,
