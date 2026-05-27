@@ -7,7 +7,7 @@
     "lint": "eslint . --ext .ts",
     "test": "npm run lint && npx jest unit.test --collectCoverage --collectCoverageFrom=src/**/*.ts --silent",
     "deploy": "npx sls deploy -s dev",
-    "test:int": "STAGE=dev npx jest int.test --config jest.config.e2e.js --silent",
+    "test:int": "STAGE=dev npx jest int.test --config jest.config.int.js --silent",
     "test:e2e": "STAGE=dev npx jest e2e.test --config jest.config.e2e.js --silent"
   },
   "repository": {
@@ -38,6 +38,7 @@
     "eslint-plugin-import": "^2.31.0",
     "husky": "^9.1.7",
     "jest": "^29.7.0",
+    "jest-extended": "^4.0.2",
     "serverless": "^3.39.0",
     "serverless-deployment-bucket": "^1.5.1",
     "serverless-esbuild": "^1.54.6",
