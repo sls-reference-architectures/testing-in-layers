@@ -28,7 +28,7 @@
     "@tsconfig/node18": "^18.2.4",
     "@types/jest": "^29.5.14",
     "@typescript-eslint/eslint-plugin": "^8.14.0",
-    "@typescript-eslint/parser": "^8.10.0",
+    "@typescript-eslint/parser": "^8.60.1",
     "aws-testing-library": "^4.0.7",
     "axios": "^1.16.0",
     "esbuild": "^0.28.0",
