@@ -21,8 +21,7 @@ const createProduct = async (
   };
 };
 
-const handler = middy(createProduct)
+// eslint-disable-next-line import/prefer-default-export -- Lambda runtime requires a named export
+export const handler = middy(createProduct)
   .use(jsonBodyParser())
   .use(errorHandler());
-
-export default handler;

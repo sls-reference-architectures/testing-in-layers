@@ -27,7 +27,7 @@ provider:
 
 functions:
   createProduct:
-    handler: src/createProductHandler.default
+    handler: src/createProductHandler.handler
     events:
       - http: 
           path: products

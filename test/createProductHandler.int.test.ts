@@ -1,7 +1,7 @@
 import { APIGatewayProxyResult } from 'aws-lambda';
 
 import { generateProduct } from './testModels';
-import handler from '../src/createProductHandler';
+import { handler } from '../src/createProductHandler';
 import { createApiGatewayEvent, createEmptyContext, removeProductsFromDB } from './awsUtils';
 
 describe('When invoking the createProduct handler', () => {
