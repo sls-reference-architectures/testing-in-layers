@@ -1,16 +1,11 @@
-import { APIGatewayProxyResult } from 'aws-lambda';
 import Logger from '@dazn/lambda-powertools-logger';
 import errorHandler from '@middy/http-error-handler';
 import jsonBodyParser from '@middy/http-json-body-parser';
 import middy from '@middy/core';
 
-import { Product } from './models';
-import { APIGatewayProxyEventMiddyNormalized } from './types';
 import * as service from './productsService';
 
-const createProduct = async (
-  event: APIGatewayProxyEventMiddyNormalized<Product>,
-): Promise<APIGatewayProxyResult> => {
+const createProduct = async (event) => {
   Logger.debug('In createProduct handler', { event });
   const { body: newProduct } = event;
   const result = await service.createProduct(newProduct);

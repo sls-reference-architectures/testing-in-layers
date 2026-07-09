@@ -12,7 +12,7 @@ const esModules = [
 
 const config = {
   ...baseConfig,
-  testMatch: ['**/?(*.)+(int.test).[jt]s?(x)'],
+  testMatch: ['**/?(*.)+(int.test).js?(x)'],
   transformIgnorePatterns: [`node_modules/(?!(${esModules.join('|')}))`],
   moduleNameMapper: {
     '^@middy/core$': '<rootDir>/node_modules/@middy/core',
@@ -22,7 +22,7 @@ const config = {
     '^@middy/input-output-logger$': '<rootDir>/node_modules/@middy/input-output-logger',
     '^filter-obj$': '<rootDir>/node_modules/filter-obj',
   },
-  globalSetup: './test/jest.setup.ts',
+  globalSetup: './test/jest.setup.js',
   testTimeout: 60000,
 };
 

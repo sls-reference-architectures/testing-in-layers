@@ -5,8 +5,8 @@ import { removeProductsFromDB } from './awsUtils';
 import { generateProduct } from './testModels';
 
 describe('When saving a Product', () => {
-  let sut: ProductsRepository;
-  const testProductIds: string[] = [];
+  let sut;
+  const testProductIds = [];
 
   beforeEach(() => {
     sut = new ProductsRepository();

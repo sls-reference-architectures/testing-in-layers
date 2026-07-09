@@ -1,11 +1,9 @@
-import { APIGatewayProxyResult } from 'aws-lambda';
-
 import { generateProduct } from './testModels';
 import { handler } from '../src/createProductHandler';
 import { createApiGatewayEvent, createEmptyContext, removeProductsFromDB } from './awsUtils';
 
 describe('When invoking the createProduct handler', () => {
-  const testProductIds: string[] = [];
+  const testProductIds = [];
   const emptyContext = createEmptyContext();
   const emptyCallback = () => (null);
 
@@ -24,7 +22,7 @@ describe('When invoking the createProduct handler', () => {
         event,
         emptyContext,
         // emptyCallback,
-      ) as APIGatewayProxyResult;
+      );
       const { id } = JSON.parse(createProductResult.body);
       testProductIds.push(id);
 
@@ -42,7 +40,7 @@ describe('When invoking the createProduct handler', () => {
         event,
         emptyContext,
         emptyCallback,
-      ) as APIGatewayProxyResult;
+      );
       const { id } = JSON.parse(createProductResult.body);
       testProductIds.push(id);
 
@@ -61,7 +59,7 @@ describe('When invoking the createProduct handler', () => {
         event,
         emptyContext,
         emptyCallback,
-      ) as APIGatewayProxyResult;
+      );
       const { id } = JSON.parse(createProductResult.body);
       testProductIds.push(id);
 
@@ -94,7 +92,7 @@ describe('When invoking the createProduct handler', () => {
         event,
         emptyContext,
         emptyCallback,
-      ) as APIGatewayProxyResult;
+      );
 
       // ASSERT
       expect(createProductResult.statusCode).toEqual(400);

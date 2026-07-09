@@ -26,17 +26,17 @@ A Simple Web Service pattern: API Gateway → Lambda → DynamoDB.
 
 **Request path:** `createProductHandler` (middy middleware stack: JSON body parser + error handler) → `productsService` (validates then delegates) → `productValidator` (Joi schema, throws `http-errors` `BadRequest` on failure) → `ProductsRepository` (DynamoDB `PutItem`, assigns a ULID as `id`).
 
-`documentClient.ts` is a lazy singleton wrapping `DynamoDBDocumentClient`. The DynamoDB table name comes from `process.env.TABLE_NAME`, which is injected by the Serverless framework at deploy time and resolved from CloudFormation outputs by `jest.setup.ts` at test time.
+`documentClient.js` is a lazy singleton wrapping `DynamoDBDocumentClient`. The DynamoDB table name comes from `process.env.TABLE_NAME`, which is injected by the Serverless framework at deploy time and resolved from CloudFormation outputs by `jest.setup.js` at test time.
 
 ## Test Layer Philosophy
 
-- **Unit** (`*.unit.test.ts`): in-memory, no network, no mocks. Tests pure logic — currently only `productValidator`.
-- **Integration** (`*.int.test.ts`): invokes the Lambda handler or repository directly in-process against a real deployed DynamoDB table. No HTTP. Requires a deployed stack but not a full HTTP round-trip.
-- **E2E** (`*.e2e.test.ts`): issues real HTTP requests via `axios` to the deployed API Gateway URL. One happy-path test only — validates gateway config and Lambda permissions, not business logic.
+- **Unit** (`*.unit.test.js`): in-memory, no network, no mocks. Tests pure logic — currently only `productValidator`.
+- **Integration** (`*.int.test.js`): invokes the Lambda handler or repository directly in-process against a real deployed DynamoDB table. No HTTP. Requires a deployed stack but not a full HTTP round-trip.
+- **E2E** (`*.e2e.test.js`): issues real HTTP requests via `axios` to the deployed API Gateway URL. One happy-path test only — validates gateway config and Lambda permissions, not business logic.
 
-`jest.setup.ts` (globalSetup for int/e2e) resolves `API_URL` and `TABLE_NAME` from the CloudFormation stack outputs automatically — no manual env var setup needed beyond `STAGE`.
+`jest.setup.js` (globalSetup for int/e2e) resolves `API_URL` and `TABLE_NAME` from the CloudFormation stack outputs automatically — no manual env var setup needed beyond `STAGE`.
 
-Test data uses `generateProduct()` from `test/testModels.ts` (faker + ULID). Integration and e2e tests clean up after themselves by deleting created records in `afterAll`.
+Test data uses `generateProduct()` from `test/testModels.js` (faker + ULID). Integration and e2e tests clean up after themselves by deleting created records in `afterAll`.
 
 ## Key Conventions
 

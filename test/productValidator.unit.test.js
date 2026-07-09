@@ -1,5 +1,4 @@
 import { faker } from '@faker-js/faker';
-import { Product } from '../src/models';
 
 import validate from '../src/productValidator';
 import { generateProduct } from './testModels';
@@ -141,10 +140,10 @@ describe('When using the Product validator', () => {
   describe('with a null input', () => {
     it('should throw 400', () => {
       // ARRANGE
-      const product = null as unknown;
+      const product = null;
 
       // ACT
-      const validateAction = () => validate(product as Product);
+      const validateAction = () => validate(product);
 
       // ASSERT
       expect(validateAction).toThrow(/Bad Request/);

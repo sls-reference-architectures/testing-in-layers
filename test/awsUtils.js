@@ -1,43 +1,38 @@
-import { DeleteCommand, DeleteCommandInput } from '@aws-sdk/lib-dynamodb';
+import { DeleteCommand } from '@aws-sdk/lib-dynamodb';
 import Logger from '@dazn/lambda-powertools-logger';
-import { Context } from 'aws-lambda';
 import { faker } from '@faker-js/faker';
 import { ulid } from 'ulid';
-import { Product } from '../src/models';
-import { APIGatewayProxyEventMiddyNormalized } from '../src/types';
 
 import { generateProduct } from './testModels';
 import getDocumentClient from '../src/documentClient';
 
-const removeProductFromDB = async (id: string): Promise<void> => {
+const removeProductFromDB = async (id) => {
   try {
-    const deleteParams: DeleteCommandInput = {
+    const deleteParams = {
       Key: { id },
       TableName: process.env.TABLE_NAME ?? '',
     };
     const docClient = getDocumentClient();
     await docClient.send(new DeleteCommand(deleteParams));
   } catch (err) {
-    Logger.error('Failed to remove item from DB', err as Error);
+    Logger.error('Failed to remove item from DB', err);
   }
 };
 
-const removeProductsFromDB = async (ids: string[]): Promise<void> => {
+const removeProductsFromDB = async (ids) => {
   const deletePromises = ids.map((id) => removeProductFromDB(id));
   await Promise.all(deletePromises);
 };
 
-const createApiGatewayEvent = (
-  product = generateProduct(),
-): APIGatewayProxyEventMiddyNormalized<Product> => ({
+const createApiGatewayEvent = (product = generateProduct()) => ({
   body: JSON.stringify(product),
   headers: { 'Content-Type': 'application/json' },
   queryStringParameters: {},
   multiValueQueryStringParameters: {},
   pathParameters: {},
-} as unknown as APIGatewayProxyEventMiddyNormalized<Product>);
+});
 
-const createEmptyContext = (): Context => ({
+const createEmptyContext = () => ({
   callbackWaitsForEmptyEventLoop: true,
   functionName: faker.internet.domainName(),
   functionVersion: faker.system.semver(),

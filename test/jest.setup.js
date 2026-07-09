@@ -1,13 +1,12 @@
 import {
   CloudFormationClient,
   DescribeStacksCommand,
-  Stack,
 } from '@aws-sdk/client-cloudformation';
 
 const region = process.env.AWS_REGION || 'us-east-1';
 const stage = process.env.STAGE || 'dev';
 
-const setup = async (): Promise<void> => {
+const setup = async () => {
   const stackName = `testing-in-layers-${stage}`;
   const stack = await getStack(stackName);
 
@@ -17,7 +16,7 @@ const setup = async (): Promise<void> => {
   process.env.NODE_ENV = stage;
 };
 
-const getStack = async (stackName: string): Promise<Stack> => {
+const getStack = async (stackName) => {
   const cf = new CloudFormationClient({ region });
   const stackResult = await cf.send(
     new DescribeStacksCommand({
@@ -32,7 +31,7 @@ const getStack = async (stackName: string): Promise<Stack> => {
   return stack;
 };
 
-const getApiUrl = (stack: Stack): string | undefined => {
+const getApiUrl = (stack) => {
   const apiUrl = getHttpApiUrl(stack);
   if (apiUrl) {
     return apiUrl;
@@ -41,15 +40,15 @@ const getApiUrl = (stack: Stack): string | undefined => {
   return getRestApiUrl(stack);
 };
 
-const getRestApiUrl = (stack: Stack) => (
+const getRestApiUrl = (stack) => (
   stack.Outputs?.find((o) => o.OutputKey === 'ServiceEndpoint')?.OutputValue
 );
 
-const getHttpApiUrl = (stack: Stack) => (
+const getHttpApiUrl = (stack) => (
   stack.Outputs?.find((o) => o.OutputKey === 'HttpApiUrl')?.OutputValue
 );
 
-const getTableName = (stack: Stack) => (
+const getTableName = (stack) => (
   stack.Outputs?.find((o) => o.OutputKey === 'TableName')?.OutputValue
 );
 

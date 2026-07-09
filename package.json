@@ -4,8 +4,8 @@
   "description": "A reference project to demonstrate testing at unit, int, and e2e layers",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint . --ext .ts",
-    "test": "npm run lint && npx jest unit.test --collectCoverage --collectCoverageFrom=src/**/*.ts --silent",
+    "lint": "eslint .",
+    "test": "npm run lint && npx jest unit.test --collectCoverage --collectCoverageFrom=src/**/*.js --silent",
     "deploy": "npx sls deploy -s dev",
     "test:int": "STAGE=dev npx jest int.test --config jest.config.int.js --silent",
     "test:e2e": "STAGE=dev npx jest e2e.test --config jest.config.e2e.js --silent"
@@ -25,16 +25,11 @@
     "@faker-js/faker": "^9.4.0",
     "@swc/core": "^1.11.21",
     "@swc/jest": "^0.2.39",
-    "@tsconfig/node18": "^18.2.4",
-    "@types/jest": "^30.0.0",
-    "@typescript-eslint/eslint-plugin": "^8.63.0",
-    "@typescript-eslint/parser": "^8.60.1",
     "aws-testing-library": "^4.0.7",
     "axios": "^1.16.0",
     "esbuild": "^0.28.1",
     "eslint": "^8.57.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-import-resolver-typescript": "^4.4.5",
     "eslint-plugin-import": "^2.32.0",
     "husky": "^9.1.7",
     "jest": "^30.4.2",
@@ -42,8 +37,7 @@
     "serverless": "^4.38.1",
     "serverless-deployment-bucket": "^1.5.1",
     "serverless-esbuild": "^1.54.6",
-    "serverless-iam-roles-per-function": "^3.2.0",
-    "typescript": "^5.7.3"
+    "serverless-iam-roles-per-function": "^3.2.0"
   },
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.734.0",
@@ -52,8 +46,6 @@
     "@middy/core": "^7.5.0",
     "@middy/http-error-handler": "^7.5.0",
     "@middy/http-json-body-parser": "^7.5.0",
-    "@types/aws-lambda": "^8.10.145",
-    "@types/http-errors": "^2.0.5",
     "http-errors": "^2.0.1",
     "joi": "^17.13.4",
     "ulid": "^2.3.0"

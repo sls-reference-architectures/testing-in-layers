@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from 'axios';
+import axios from 'axios';
 import { removeProductFromDB } from './awsUtils';
 import { generateProduct } from './testModels';
 
@@ -6,7 +6,7 @@ describe('Given a product', () => {
   const product = generateProduct();
 
   describe('when POSTing it to API', () => {
-    let postResult: AxiosResponse;
+    let postResult;
 
     beforeAll(async () => {
       const axiosInstance = axios.create({

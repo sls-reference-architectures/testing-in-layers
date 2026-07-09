@@ -1,33 +1,18 @@
 module.exports = {
   env: {
     jest: true,
+    es2022: true,
   },
   extends: [
     'eslint:recommended',
-    'plugin:@typescript-eslint/eslint-recommended',
-    'plugin:@typescript-eslint/recommended',
     'airbnb-base',
   ],
-  parser: '@typescript-eslint/parser',
-  plugins: [
-    '@typescript-eslint',
-  ],
+  parserOptions: {
+    ecmaVersion: 'latest',
+  },
   root: true,
   rules: {
     'no-use-before-define': 0,
-    'import/extensions': [
-      'error',
-      'ignorePackages',
-      {
-        ts: 'never',
-      },
-    ],
-  },
-  settings: {
-    'import/resolver': {
-      typescript: {
-        alwaysTryTypes: true,
-      },
-    },
+    'import/extensions': 0,
   },
 };
