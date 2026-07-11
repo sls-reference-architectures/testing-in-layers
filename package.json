@@ -16,7 +16,7 @@
     "url": "git+https://github.com/sls-reference-architectures/testing-in-layers.git"
   },
   "author": "Seth Orell",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/sls-reference-architectures/testing-in-layers/issues"
   },
