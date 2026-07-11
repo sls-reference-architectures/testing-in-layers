@@ -35,7 +35,7 @@
     "husky": "^9.1.7",
     "jest": "^30.4.2",
     "jest-extended": "^4.0.2",
-    "serverless": "^4.38.1",
+    "osls": "^4.0.0",
     "serverless-deployment-bucket": "^1.5.1",
     "serverless-esbuild": "^1.54.6",
     "serverless-iam-roles-per-function": "^3.2.0"
