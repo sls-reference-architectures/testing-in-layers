@@ -7,11 +7,6 @@ on:
   pull_request:
     branches: [ master ]
 
-# These permissions are needed to interact with GitHub's OIDC Token endpoint.
-permissions:
-  id-token: write
-  contents: read
-
 jobs:
   build:
     if: ${{ github.actor == 'dependabot[bot]' }}
@@ -28,10 +23,3 @@ jobs:
       run: npm ci
     - name: Run unit tests
       run: npm test
-    - name: Configure AWS Credentials
-      uses: aws-actions/configure-aws-credentials@v6
-      with:
-        aws-region: us-east-1
-        role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
-    - name: Run int tests
-      run: npm run test:int

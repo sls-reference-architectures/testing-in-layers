@@ -40,6 +40,14 @@ To run end-to-end tests:
   - `$ export NODE_ENV=dev`
   - `$ npm run test:e2e`
 
+## CI Behavior
+CI deploys and tears down the stack on every run, then runs int and e2e tests
+against that fresh deployment. This is a deployability check, not a
+requirement of the int-test layer itself - as described above, int tests
+only need the DynamoDB table to exist and don't strictly require the Lambda
+code to be redeployed each time. Redeploying every run just means CI also
+catches the case where the current commit isn't actually deployable.
+
 ## Initial Deployment and Spiral Approach to Building
 I am including this section because I have received questions about initial deployment. Most of them are similar to "How can I write a test against a DynamoDB when I haven't yet configured it?" and it's a fair question.
 

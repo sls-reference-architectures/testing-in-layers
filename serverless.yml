@@ -1,6 +1,6 @@
 service: testing-in-layers
 
-frameworkVersion: '3'
+frameworkVersion: '4'
 
 custom:
   esbuild:
