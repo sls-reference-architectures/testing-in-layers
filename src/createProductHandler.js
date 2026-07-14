@@ -16,7 +16,6 @@ const createProduct = async (event) => {
   };
 };
 
-// eslint-disable-next-line import/prefer-default-export -- Lambda runtime requires a named export
 export const handler = middy(createProduct)
   .use(jsonBodyParser())
   .use(errorHandler());
