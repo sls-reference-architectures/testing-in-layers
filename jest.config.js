@@ -1,4 +1,4 @@
-const esModules = ['aws-testing-library', 'filter-obj'];
+const esModules = ['aws-testing-library', 'filter-obj', '@faker-js/faker'];
 
 module.exports = {
   setupFilesAfterEnv: ['jest-extended/all', './test/setupFrameworks.js'],
