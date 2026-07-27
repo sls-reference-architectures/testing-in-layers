@@ -3,6 +3,7 @@ const baseConfig = require('./jest.config.js');
 const esModules = [
   'aws-testing-library',
   'filter-obj',
+  '@faker-js/faker',
   '@middy/core',
   '@middy/http-error-handler',
   '@middy/http-json-body-parser',
