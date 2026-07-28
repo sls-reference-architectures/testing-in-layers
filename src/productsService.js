@@ -1,11 +1,12 @@
-import Logger from '@dazn/lambda-powertools-logger';
+import { Logger } from '@aws-lambda-powertools/logger';
 import validate from './productValidator';
 import ProductsRepository from './productsRepository';
 
+const logger = new Logger({ serviceName: 'testing-in-layers' });
 const productsRepo = new ProductsRepository();
 
 export const createProduct = async (product) => {
-  Logger.debug('In service.createProduct', { product });
+  logger.debug('In service.createProduct', { product });
   const cleanProduct = validate(product);
   const productToReturn = await productsRepo.save(cleanProduct);
 

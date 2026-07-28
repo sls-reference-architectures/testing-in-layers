@@ -1,10 +1,12 @@
 import { DeleteCommand } from '@aws-sdk/lib-dynamodb';
-import Logger from '@dazn/lambda-powertools-logger';
+import { Logger } from '@aws-lambda-powertools/logger';
 import { faker } from '@faker-js/faker';
 import { ulid } from 'ulid';
 
 import { generateProduct } from './testModels';
 import getDocumentClient from '../src/documentClient';
+
+const logger = new Logger({ serviceName: 'testing-in-layers' });
 
 const removeProductFromDB = async (id) => {
   try {
@@ -15,7 +17,7 @@ const removeProductFromDB = async (id) => {
     const docClient = getDocumentClient();
     await docClient.send(new DeleteCommand(deleteParams));
   } catch (err) {
-    Logger.error('Failed to remove item from DB', err);
+    logger.error('Failed to remove item from DB', err);
   }
 };
 
