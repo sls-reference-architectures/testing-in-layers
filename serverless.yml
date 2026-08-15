@@ -27,10 +27,11 @@ functions:
   createProduct:
     handler: src/createProductHandler.handler
     events:
-      - http: 
+      - http:
           path: products
           method: POST
           cors: true
+          authorizer: aws_iam
     iamRoleStatements:
       - Effect: Allow
         Action: dynamodb:PutItem

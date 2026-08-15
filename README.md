@@ -1,6 +1,14 @@
 # testing-in-layers
 A reference project to demonstrate testing at unit, int, and e2e layers (this has nothing to do with Lambda "layers")
 
+## Authorization
+
+The API is protected with IAM authorization (`authorizer: aws_iam`), so
+requests must be SigV4-signed by a caller holding `execute-api:Invoke`. The e2e
+tests sign via `test/signedClient.js`; note the interceptor attaches to the
+axios *instance*, because clients from `axios.create()` do not inherit
+interceptors from the default `axios` object.
+
 ## The Layers
 One way to visualize the concept of testing "layers" is the traditional "Testing Pyramid" (or the more recent "Testing Honeycomb") with its horizontal bands each representing a layer. In most models, they share some common, often-encountered layers: typically the "Unit" layer and, just above it, the "Integration" layer. I am going to dig into this so-called integration layer to argue that we can devise a meaningful litmus test for splitting it into dedicated layers.
 

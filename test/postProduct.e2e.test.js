@@ -1,5 +1,5 @@
-import axios from 'axios';
 import { removeProductFromDB } from './awsUtils';
+import createSignedClient from './signedClient';
 import { generateProduct } from './testModels';
 
 describe('Given a product', () => {
@@ -9,7 +9,7 @@ describe('Given a product', () => {
     let postResult;
 
     beforeAll(async () => {
-      const axiosInstance = axios.create({
+      const axiosInstance = createSignedClient({
         baseURL: process.env.API_URL,
         validateStatus: () => true,
       });
