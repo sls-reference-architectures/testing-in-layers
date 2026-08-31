@@ -8,6 +8,9 @@ on:
     branches: [ master ]
   push:
     branches: [ master ]
+  schedule:
+    - cron: '20 6 * * *' # Daily deploy; fleet staggered 5 min apart (Free plan = 20 concurrent jobs)
+  workflow_dispatch:
 
 # These permissions are needed to interact with GitHub's OIDC Token endpoint.
 permissions:
