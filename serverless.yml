@@ -64,4 +64,3 @@ package:
 plugins:
   - serverless-esbuild
   - serverless-iam-roles-per-function
-  - serverless-deployment-bucket
