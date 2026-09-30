@@ -51,7 +51,7 @@
     "@middy/http-error-handler": "^7.9.2",
     "@middy/http-json-body-parser": "^7.9.2",
     "http-errors": "^2.0.1",
-    "joi": "^18.2.3",
+    "joi": "^18.2.9",
     "ulid": "^3.0.2"
   }
 }
